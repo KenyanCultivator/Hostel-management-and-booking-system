@@ -1,14 +1,27 @@
-console.log('router connection...');
 const express = require('express');
-const { TestController } = require('../controller/index');
+const { TestController, UserController } = require('../controller');
 
-const app = express();
 const router = express.Router();
 
-app.use(express.urlencoded({ extended: false }));
 
 try {
-    router.get('/', [TestController.test]);
+    router.post('/', [TestController.test]);
+
+
+    // user router
+    router.get('/user/home', [UserController.home]);
+
+    router.get('/user', [UserController.index]);
+
+    router.post('/user/store', [UserController.store]);
+
+    router.get('/user/show/:id', [UserController.show]);
+
+    router.get('/user/single/:id', [UserController.single]);
+
+    router.patch('/user/update/:id', [UserController.update]);
+
+    router.delete('/user/destroy/:id', [UserController.destroy]);
     
 } catch (error) {
     throw error

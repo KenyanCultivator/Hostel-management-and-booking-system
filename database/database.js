@@ -1,4 +1,3 @@
-console.log('database connected...');
 const Sequelize = require('sequelize');
 
 
