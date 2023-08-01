@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
         health_conditions: {
             type: DataTypes.STRING,
         },
-        ID: {
+        national_id: {
             type: DataTypes.STRING,
         },
         passport: {

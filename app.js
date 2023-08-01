@@ -18,14 +18,14 @@ try {
         res.status(404).send('404');
     });
 
-    // app.use((err, req, res, next) => {
-    //     console.log(res);
-    //     if (err instanceof Errors) {
-    //         res.status(err.statuscode).json({ ...err });
-    //         return;
-    //     }
-    //     res.status(500).json({ message: err.description || 'Something Wrong'})
-    // });
+    app.use((err, req, res, next) => {
+        console.log(res);
+        if (err instanceof Errors) {
+            res.status(err.statuscode).json({ ...err });
+            return;
+        }
+        res.status(500).json({ message: err.description || 'Something Wrong'})
+    });
 
     
 

@@ -2,9 +2,9 @@ const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
     
-    class House_type extends Model {}
+    class House_Type extends Model {}
 
-    House_type.init({
+    House_Type.init({
         name: {
             type: DataTypes.STRING,
         },
@@ -14,13 +14,13 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
         sequelize,
-        modelName: 'House_type',
+        modelName: 'House_Type',
         timestamps: true,
         paranoid: true
     });
     
-    // House_type.sync({force: true});
-    House_type.sync();
+    // House_Type.sync({force: true});
+    House_Type.sync();
 
-    return House_type;
+    return House_Type;
 }
