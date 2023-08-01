@@ -6,17 +6,6 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(express.json());
 
-const home = ((req, res) => {
-    try {
-        console.log('user');
-        res.send({
-            message: "user controller connected"
-        })
-    } catch (error) {
-        console.log(error);
-    }
-});
-
 const index = async (req, res) => {
     try {
         const users = await AgentModel.findAll();
@@ -30,11 +19,18 @@ const index = async (req, res) => {
 
 const store = async (req, res) => {
     try {
-        const { email, name, password } = req.body;
+        const { first_name, last_name, other_names, date_of_birth, cell_no, health_conditions, national_id, passport, tax_pin, delete_reason } = req.body;
         const store = await AgentModel.create({
-            name: name,
-            email: email,
-            password: password
+            first_name, 
+            last_name, 
+            other_names, 
+            date_of_birth, 
+            cell_no, 
+            health_conditions, 
+            national_id, 
+            passport, 
+            tax_pin, 
+            delete_reason
         });
         res.send({
             message: store
@@ -68,8 +64,8 @@ const single = async (req, res) => {
 
 const update = async (req, res) => {
     try {
-        const { name, email, password } = req.body;
-        await AgentModel.update({ name, email, password},{ where: {id: req.params.id} });
+        const { first_name, last_name, other_names, date_of_birth, cell_no, health_conditions, national_id, status, passport, tax_pin, delete_reason } = req.body;
+        await AgentModel.update({ first_name, last_name, other_names, date_of_birth, cell_no, health_conditions, national_id, status, passport, tax_pin, delete_reason },{ where: {id: req.params.id} });
         const show = await AgentModel.findAll({where: {id: req.params.id}});
         res.send({
             message: show
@@ -91,5 +87,5 @@ const destroy = async (req, res) => {
 };
 
 module.exports = {
-    home, store,index, show, update, destroy, single
+    store ,index, show, update, destroy, single
 }

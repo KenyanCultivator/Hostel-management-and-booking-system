@@ -38,12 +38,6 @@ module.exports = (sequelize, DataTypes) => {
         total_houses: {
             type: DataTypes.INTEGER,
         },
-        date_in: {
-            type: DataTypes.DATEONLY,
-        },
-        date_out: {
-            type: DataTypes.DATEONLY,
-        },
         delete_reason: {
             type: DataTypes.STRING,
         },

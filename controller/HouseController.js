@@ -6,17 +6,6 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(express.json());
 
-const home = ((req, res) => {
-    try {
-        console.log('user');
-        res.send({
-            message: "user controller connected"
-        })
-    } catch (error) {
-        console.log(error);
-    }
-});
-
 const index = async (req, res) => {
     try {
         const users = await HouseModel.findAll();
@@ -30,11 +19,20 @@ const index = async (req, res) => {
 
 const store = async (req, res) => {
     try {
-        const { email, name, password } = req.body;
+        const { name, description, total_rooms, total_rent, total_deposit, status, payment_method, price, features, rating, confirmation, total_houses, delete_reason } = req.body;
         const store = await HouseModel.create({
-            name: name,
-            email: email,
-            password: password
+            name, 
+            description, 
+            total_rooms, 
+            total_rent, 
+            total_deposit, 
+            status, 
+            payment_method, 
+            price, features, 
+            rating, 
+            confirmation, 
+            total_houses, 
+            delete_reason
         });
         res.send({
             message: store
@@ -68,8 +66,8 @@ const single = async (req, res) => {
 
 const update = async (req, res) => {
     try {
-        const { name, email, password } = req.body;
-        await HouseModel.update({ name, email, password},{ where: {id: req.params.id} });
+        const { name, description, total_rooms, total_rent, total_deposit, status, payment_method, price, features, rating, confirmation, total_houses, delete_reason } = req.body;
+        await HouseModel.update({ name, description, total_rooms, total_rent, total_deposit, status, payment_method, price, features, rating, confirmation, total_houses, delete_reason },{ where: {id: req.params.id} });
         const show = await HouseModel.findAll({where: {id: req.params.id}});
         res.send({
             message: show
@@ -91,5 +89,5 @@ const destroy = async (req, res) => {
 };
 
 module.exports = {
-    home, store,index, show, update, destroy, single
+    store ,index, show, update, destroy, single
 }

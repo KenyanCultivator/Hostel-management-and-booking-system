@@ -30,11 +30,21 @@ const index = async (req, res) => {
 
 const store = async (req, res) => {
     try {
-        const { email, name, password } = req.body;
+        const { first_name, last_name, other_names, date_of_birth, cell_no, health_conditions, national_id, passport, tax_pin, total_evictions, date_in, date_out, delete_reason } = req.body;
         const store = await TenantModel.create({
-            name: name,
-            email: email,
-            password: password
+            first_name, 
+            last_name, 
+            other_names, 
+            date_of_birth, 
+            cell_no, 
+            health_conditions, 
+            national_id, 
+            passport, 
+            tax_pin, 
+            total_evictions,
+            date_in,
+            date_out,
+            delete_reason,
         });
         res.send({
             message: store
@@ -68,8 +78,8 @@ const single = async (req, res) => {
 
 const update = async (req, res) => {
     try {
-        const { name, email, password } = req.body;
-        await TenantModel.update({ name, email, password},{ where: {id: req.params.id} });
+        const { first_name, last_name, other_names, date_of_birth, cell_no, health_conditions, national_id, passport, tax_pin, total_evictions, date_in, date_out, delete_reason } = req.body;
+        await TenantModel.update({ first_name, last_name, other_names, date_of_birth, cell_no, health_conditions, national_id, passport, tax_pin, total_evictions, date_in, date_out, delete_reason },{ where: {id: req.params.id} });
         const show = await TenantModel.findAll({where: {id: req.params.id}});
         res.send({
             message: show

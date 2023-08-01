@@ -2,9 +2,9 @@ const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
     
-    class Admin extends Model {}
+    class Agent extends Model {}
 
-    Admin.init({
+    Agent.init({
         first_name: {
             type: DataTypes.STRING,
         },
@@ -41,13 +41,13 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
         sequelize,
-        modelName: 'Admin',
+        modelName: 'Agent',
         timestamps: true,
         paranoid: true
     });
     
-    // Admin.sync({force: true});
-    Admin.sync();
+    // Agent.sync({force: true});
+    Agent.sync();
 
-    return Admin;
+    return Agent;
 }

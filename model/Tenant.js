@@ -41,7 +41,7 @@ module.exports = (sequelize, DataTypes) => {
         status: {
             type: DataTypes.STRING,
         },
-        Total_evictions: {
+        total_evictions: {
             type: DataTypes.INTEGER,
         },
         date_in: {
