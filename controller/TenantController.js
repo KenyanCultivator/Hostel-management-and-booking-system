@@ -6,25 +6,15 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(express.json());
 
-const home = ((req, res) => {
-    try {
-        console.log('user');
-        res.send({
-            message: "user controller connected"
-        })
-    } catch (error) {
-        console.log(error);
-    }
-});
-
 const index = async (req, res) => {
+    console.log('user');
     try {
         const users = await TenantModel.findAll();
         res.send({
             message: users
         });
     } catch (error) {
-        throw error;
+        console.log(error);
     }
 };
 
@@ -101,5 +91,5 @@ const destroy = async (req, res) => {
 };
 
 module.exports = {
-    home, store,index, show, update, destroy, single
+    store,index, show, update, destroy, single
 }

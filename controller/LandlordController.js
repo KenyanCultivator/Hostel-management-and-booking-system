@@ -99,5 +99,5 @@ const destroy = async (req, res) => {
 };
 
 module.exports = {
-    home, store,index, show, update, destroy, single
+    home, store, index, show, update, destroy, single
 }

@@ -1,6 +1,5 @@
 const Sequelize = require('sequelize');
 
-
 module.exports = () => {
   try {
     const connection = new Sequelize('hostels_raw', 'root', '', {

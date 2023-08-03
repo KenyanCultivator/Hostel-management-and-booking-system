@@ -5,8 +5,9 @@ module.exports = (sequelize, DataTypes) => {
     class Role extends Model {}
 
     Role.init({
-        role: {
+        name: {
             type: DataTypes.STRING,
+            unique: true,
         },
         delete_reason: {
             type: DataTypes.STRING,

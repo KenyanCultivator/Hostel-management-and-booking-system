@@ -1,11 +1,4 @@
 const { AdminModel } = require('../model');
-const express = require('express');
-
-const app = express();
-app.use(express.urlencoded({ extended: false }));
-
-app.use(express.json());
-
 const index = async (req, res) => {
     try {
         const users = await AdminModel.findAll();
@@ -13,7 +6,7 @@ const index = async (req, res) => {
             message: users
         });
     } catch (error) {
-        throw error;
+        console.log(error)
     }
 };
 

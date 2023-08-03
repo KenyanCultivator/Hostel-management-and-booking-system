@@ -1,4 +1,4 @@
-const { BookingModel } = require('../model');
+const { BookingModel } = require('../../model');
 const express = require('express');
 
 const app = express();

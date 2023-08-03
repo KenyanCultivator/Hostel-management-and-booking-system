@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.2",
+    "express-validation": "^4.1.0",
     "exprss": "^0.0.1-security",
     "mysql2": "^3.5.2",
     "nodemon": "^3.0.1",

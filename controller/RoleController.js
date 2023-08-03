@@ -6,22 +6,11 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(express.json());
 
-const home = ((req, res) => {
-    try {
-        console.log('user');
-        res.send({
-            message: "user controller connected"
-        })
-    } catch (error) {
-        console.log(error);
-    }
-});
-
 const index = async (req, res) => {
     try {
-        const users = await RoleModel.findAll();
+        const roles = await RoleModel.findAll();
         res.send({
-            message: users
+            message: roles
         });
     } catch (error) {
         throw error;
@@ -30,11 +19,9 @@ const index = async (req, res) => {
 
 const store = async (req, res) => {
     try {
-        const { email, name, password } = req.body;
+        const { name } = req.body;
         const store = await RoleModel.create({
             name: name,
-            email: email,
-            password: password
         });
         res.send({
             message: store
@@ -69,7 +56,7 @@ const single = async (req, res) => {
 const update = async (req, res) => {
     try {
         const { name, email, password } = req.body;
-        await RoleModel.update({ name, email, password},{ where: {id: req.params.id} });
+        await RoleModel.update({ email },{ where: {id: req.params.id} });
         const show = await RoleModel.findAll({where: {id: req.params.id}});
         res.send({
             message: show
@@ -91,5 +78,5 @@ const destroy = async (req, res) => {
 };
 
 module.exports = {
-    home, store,index, show, update, destroy, single
+    store ,index, show, update, destroy, single
 }
