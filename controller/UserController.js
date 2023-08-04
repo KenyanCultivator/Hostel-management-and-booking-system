@@ -14,10 +14,7 @@ const index = async (req, res) => {
         if (!users) {
             throw new Error('empty db')
         }
-        
-        res.send({
-            users
-        });
+        res.send({ users });
 
     } catch ({name, message}) {
         res.send(ExceptionChecker.ExceptionChecker(message));

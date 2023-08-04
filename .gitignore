@@ -1,3 +1,7 @@
 .env
+.txt
+ExceptionChecker.txt
+HttpException.txt
+StatusCodes.txt
 node_modules
 info.txt

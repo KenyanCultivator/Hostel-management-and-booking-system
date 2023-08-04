@@ -19,9 +19,7 @@ const store = async (req, res) => {
         const { error, value } = validationSchema.validate(req.body);
         
         if(error){
-            console.log(error);
             return res.send('invalid details');
-            // throw new StatusCodesError.StatusCodesError(706);
         }
 
         const { email, name, password } = value;
