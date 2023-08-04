@@ -8,16 +8,16 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(express.json());
 
-const index = async (req, res) => {
+const index = async (req, res, next) => {
     try {
         const users = await UserModel.findAll();
         if (!users) {
-            throw new Error('empty db')
+            return next(new HttpException.HttpException(612));
         }
-        res.send({ users });
 
-    } catch ({name, message}) {
-        res.send(ExceptionChecker.ExceptionChecker(message));
+        res.send({ users });
+    } catch ({message}) {
+        return next(new ExceptionChecker.ExceptionChecker(message));
     }
 };
 
@@ -32,8 +32,8 @@ const store = async (req, res) => {
         res.send({
             message: store
         });
-    } catch ({name, message}) {
-        res.send(ExceptionChecker.ExceptionChecker(name));
+    } catch (error) {
+        throw error
     }
 };
 
@@ -44,8 +44,7 @@ const show = async (req, res) => {
             message: show
         });
     } catch (error) {
-        console.log(error); 
-        // throw error;
+        throw error;
     }
 };
 

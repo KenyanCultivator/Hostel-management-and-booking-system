@@ -1,6 +1,6 @@
 
 const express = require('express');const { Joi } = require('express-validation');
-const { StatusCodesError } = require('../../error');
+const { StatusCodesError, ExceptionChecker } = require('../../error');
 const { UserModel } = require('../../model');
 
 const app = express();
@@ -30,8 +30,8 @@ const store = async (req, res) => {
         
         res.send(user);
 
-    } catch (error) {
-        throw error;
+    } catch ({ name }) {
+        return next(new ExceptionChecker.ExceptionChecker(name))
     }
 };
 

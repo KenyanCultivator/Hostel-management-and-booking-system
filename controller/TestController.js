@@ -1,5 +1,5 @@
 const { Tester } = require("../model/index");
-const { HttpException } = require("../error");
+const { HttpException, ExceptionChecker } = require("../error");
 const express = require('express');
 
 const app = express();
@@ -7,15 +7,27 @@ const app = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-const test = ((req, res) => {
+const testHttpExeptionClass = ((req, res, next) => {
     try {
-        throw new HttpException.HttpException(req.params.number);
+        return next(new HttpException.HttpException(req.params.number));
 
     } catch (error) {
         throw error;
     }
 });
 
+const testHttpExeptionFunction = async (req, res, next) => {
+    try {
+        const users = await Tester.findAll();
+        if (users) {
+            return next(ExceptionChecker.ExceptionChecker(req.body.number));
+        }
+
+    } catch ({name}) {
+        return next(ExceptionChecker.ExceptionChecker(name));
+    }
+};
+
 module.exports = {
-    test
+    testHttpExeptionFunction, testHttpExeptionClass
 }

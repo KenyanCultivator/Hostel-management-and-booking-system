@@ -76,17 +76,12 @@ const statuscodes = {
     613: 'duplicate data',
 
     //database success
-    700: 'database created',
-    701: 'data inserted',
-    702: 'data updated',
-    703: 'data deleted',
     704: 'complete data displayed',
     705: 'specific data displayed',
     706: 'faulty details',
-    707: 'name is not in field list',
-    708: 'name already exists',
+    707: 'data already in field list',
+    708: 'user already exists',
 
-    // username is taken
     // unable to validate
     // no token
     // email is taken

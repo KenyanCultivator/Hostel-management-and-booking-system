@@ -1,20 +1,21 @@
+const { ErroNames } = require("./ErrorNames");
+const { HttpException } = require("./HttpException");
 const { statuscodes } = require("./StatusCodes");
 
 function ExceptionChecker(name) {
-    let statuscode = 500;
-    let statusExceptions = "Unknown";
-    
-    if(name == 'SequelizeUniqueConstraintError'){
-        statuscode = 708
-    }
-    if(name == 'empty db'){
-        statuscode = 612
-    }
-    
-    statusExceptions = Object.entries(statuscodes).filter((v) => v[0] == statuscode)[0];
-    console.log(statusExceptions);
+    if(name.substring){
+        if(Object.entries(ErroNames).filter((v) => v[1] == name)[0]){
+            statusExceptions = Object.entries(ErroNames).filter((v) => v[1] == name)[0];
+            return new HttpException(statusExceptions[0]);
+        }
 
-    return statusExceptions;
+    }
+    if(parseInt(name)) {
+        console.log(name);
+        return new HttpException(name);
+    }
+    
+    return new HttpException(500, name);
 }
 
 module.exports = {

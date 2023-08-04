@@ -1,6 +1,7 @@
 ErroNames = {
-    612: "empty db",
-    708: "SequelizeUniqueConstraintError"
+    612: "empty",
+    708: "SequelizeUniqueConstraintError",
+    
 }
 
 module.exports = {

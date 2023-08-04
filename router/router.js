@@ -62,6 +62,7 @@ router.patch('/role/update/:id', [RoleController.update]);
 router.delete('/role/destory/:id', [RoleController.destroy]);
 
 // test
-router.get('/test/:number', [TestController.test]);
+router.get('/test/class/:number', [TestController.testHttpExeptionClass]);
+router.get('/test/function/:number', [TestController.testHttpExeptionFunction]);
 
 module.exports = router;

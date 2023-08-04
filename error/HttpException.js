@@ -6,7 +6,7 @@ class HttpException{
     constructor(statuscode = 500, description){
         const errorCodes = Object.entries(statuscodes).filter((v) => v[0] == statuscode)[0];
         this.statuscode = parseInt(errorCodes[0]);
-        this.description = errorCodes[1];
+        this.description = description || errorCodes[1];
         
         console.log(errorCodes);
     }
