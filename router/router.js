@@ -1,5 +1,6 @@
 const express = require('express');
 const { TestController, UserController, AdminController, AgentController, TenantController, LandlordController, HouseController, RoleController, RegisterController } = require('../controller');
+const { verificationAuthMiddleware } = require('../Middleware');
 
 const router = express.Router({ caseSensitive: true });
 
@@ -64,5 +65,6 @@ router.delete('/role/destory/:id', [RoleController.destroy]);
 // test
 router.get('/test/class/:number', [TestController.testHttpExeptionClass]);
 router.get('/test/function/:number', [TestController.testHttpExeptionFunction]);
+router.post('/test/middleware', [verificationAuthMiddleware.verifyUserData, verificationAuthMiddleware.checkDuplicateUserData, TestController.testMiddlware])
 
 module.exports = router;

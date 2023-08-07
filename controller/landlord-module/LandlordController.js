@@ -1,4 +1,4 @@
-const { LandlordModel } = require('../model');
+const { LandlordModel } = require('../../model');
 const express = require('express');
 
 const app = express();

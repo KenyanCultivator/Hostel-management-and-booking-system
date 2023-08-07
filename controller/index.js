@@ -1,10 +1,7 @@
-
-
-
 const TestController = require('./TestController');
 const UserController = require('./UserController');
-const AdminController = require('./AdminController');
-const AgentController = require('./AgentController');
+const AdminController = require('./admin-module/AdminController');
+const AgentController = require('./agent-module/AgentController');
 const RegisterController = require('./Authentication/RegisterController')
 // const BookingController = require('./BookingController');
 // const CommentController = require('./CommentController');
@@ -18,12 +15,12 @@ const RegisterController = require('./Authentication/RegisterController')
 // const EvictionController = require('./EvictionController');
 // const FeedbackController = require('./FeedbackController');
 // const GenderController = require('./GenderController');
-const HouseController = require('./HouseController');
+const HouseController = require('./house-module/HouseController');
 // const House_TypeController = require('./House_TypeController');
 // const House_StatisticController = require('./House_StatisticController');
 // const House_RecordController = require('./House_RecordController');
 // const IssueController = require('./othercontrollers/IssueController');
-const LandlordController = require('./LandlordController');
+const LandlordController = require('./landlord-module/LandlordController');
 // const LocationController = require('./othercontrollers/LocatonModel');
 // const MaintenanceController = require('./othercontrollers/MaintenanceController');
 // const Marital_StatusController = require('./othercontrollers/Marital_StatusController');
@@ -34,10 +31,10 @@ const LandlordController = require('./LandlordController');
 // const ReferallController = require('./othercontrollers/ReferralController');
 // const RegionController = require('./othercontrollers/RegionController');
 // const RentController = require('./othercontrollers/RentController');
-const RoleController = require('./RoleController');
+const RoleController = require('./admin-module/RoleController');
 // const RoomController = require('./othercontrollers/RoomController');
 // const Room_HistoryController = require('./othercontrollers/Room_HistoryController');
-const TenantController = require('./TenantController');
+const TenantController = require('./tenant-module/TenantController');
 // const Tenant_historyController = require('./othercontrollers/Tenant_HistoryController');
 // const StudentController = require('./othercontrollers/StudentController');
 // const StorageController = require('./othercontrollers/StorageController');

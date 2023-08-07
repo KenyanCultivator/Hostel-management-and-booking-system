@@ -52,7 +52,7 @@ const single = async (req, res) => {
     try {
         const attributes = Object.keys(req.body);
 
-        const single = await UserModel.findOne({ attributes: attribute, where: {id: req.params.id}});
+        const single = await UserModel.findOne({ attributes: attributes, where: {id: req.params.id}});
         res.send({
             message: single
         });

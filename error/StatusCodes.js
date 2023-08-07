@@ -74,6 +74,7 @@ const statuscodes = {
     611: 'database is not connected',
     612: 'empty data',
     613: 'duplicate data',
+    614: 'invalid details',
 
     //database success
     704: 'complete data displayed',
@@ -81,6 +82,7 @@ const statuscodes = {
     706: 'faulty details',
     707: 'data already in field list',
     708: 'user already exists',
+    709: 'email already exists',
 
     // unable to validate
     // no token

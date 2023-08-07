@@ -3,12 +3,10 @@ const router = require('./router/router');
 const { HttpException } = require('./error');
 
 const app = express();
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
 try {
-
-    app.use(express.urlencoded({ extended: false }));
-    app.use(express.json());
-
     app.use(router);
 
     app.use('*', (req, res) => {
@@ -16,7 +14,6 @@ try {
     });
 
     app.use((err, req, res, next) => {
-
         if (err instanceof HttpException.HttpException) {
             res.status(err.statuscode).json({ ...err });
             return;
@@ -33,8 +30,6 @@ try {
 
         res.status(err[0] || 500).send( err || 'Something Wrong');
     });
-        
-
 
     app.listen(3000, () => {
         console.log('server connection established...');

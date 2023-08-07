@@ -1,4 +1,4 @@
-const { AgentModel } = require('../model');
+const { TenantModel } = require('../../model');
 const express = require('express');
 
 const app = express();
@@ -7,20 +7,21 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 const index = async (req, res) => {
+    console.log('user');
     try {
-        const users = await AgentModel.findAll();
+        const users = await TenantModel.findAll();
         res.send({
             message: users
         });
     } catch (error) {
-        throw error;
+        console.log(error);
     }
 };
 
 const store = async (req, res) => {
     try {
-        const { first_name, last_name, other_names, date_of_birth, cell_no, health_conditions, national_id, passport, tax_pin, delete_reason } = req.body;
-        const store = await AgentModel.create({
+        const { first_name, last_name, other_names, date_of_birth, cell_no, health_conditions, national_id, passport, tax_pin, total_evictions, date_in, date_out, delete_reason } = req.body;
+        const store = await TenantModel.create({
             first_name, 
             last_name, 
             other_names, 
@@ -30,7 +31,10 @@ const store = async (req, res) => {
             national_id, 
             passport, 
             tax_pin, 
-            delete_reason
+            total_evictions,
+            date_in,
+            date_out,
+            delete_reason,
         });
         res.send({
             message: store
@@ -42,7 +46,7 @@ const store = async (req, res) => {
 
 const show = async (req, res) => {
     try {
-        const show = await AgentModel.findAll({where: {id: req.params.id}}, );
+        const show = await TenantModel.findAll({where: {id: req.params.id}}, );
         res.send({
             message: show
         });
@@ -53,7 +57,7 @@ const show = async (req, res) => {
 
 const single = async (req, res) => {
     try {
-        const single = await AgentModel.findOne({ attributes: ['name' ], where: {id: req.params.id}});
+        const single = await TenantModel.findOne({ attributes: ['name' ], where: {id: req.params.id}});
         res.send({
             message: single
         });
@@ -64,9 +68,9 @@ const single = async (req, res) => {
 
 const update = async (req, res) => {
     try {
-        const { first_name, last_name, other_names, date_of_birth, cell_no, health_conditions, national_id, status, passport, tax_pin, delete_reason } = req.body;
-        await AgentModel.update({ first_name, last_name, other_names, date_of_birth, cell_no, health_conditions, national_id, status, passport, tax_pin, delete_reason },{ where: {id: req.params.id} });
-        const show = await AgentModel.findAll({where: {id: req.params.id}});
+        const { first_name, last_name, other_names, date_of_birth, cell_no, health_conditions, national_id, passport, tax_pin, total_evictions, date_in, date_out, delete_reason } = req.body;
+        await TenantModel.update({ first_name, last_name, other_names, date_of_birth, cell_no, health_conditions, national_id, passport, tax_pin, total_evictions, date_in, date_out, delete_reason },{ where: {id: req.params.id} });
+        const show = await TenantModel.findAll({where: {id: req.params.id}});
         res.send({
             message: show
         });
@@ -77,7 +81,7 @@ const update = async (req, res) => {
 
 const destroy = async (req, res) => {
     try {
-        const destroy = await AgentModel.destroy({ where: {id: req.params.id} });
+        const destroy = await TenantModel.destroy({ where: {id: req.params.id} });
         res.send({
             message: "Data has been destroyed..."
         });
@@ -87,5 +91,5 @@ const destroy = async (req, res) => {
 };
 
 module.exports = {
-    store ,index, show, update, destroy, single
+    store,index, show, update, destroy, single
 }

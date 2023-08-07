@@ -1,4 +1,4 @@
-const { Tester } = require("../model/index");
+const { Tester, UserModel } = require("../model/index");
 const { HttpException, ExceptionChecker } = require("../error");
 const express = require('express');
 
@@ -26,8 +26,22 @@ const testHttpExeptionFunction = async (req, res, next) => {
     } catch ({name}) {
         return next(ExceptionChecker.ExceptionChecker(name));
     }
-};
+}
 
+const testMiddlware = async (req, res, next) => {
+    try {
+        const { name, email, password } = req.body;
+        const store = await UserModel.create({
+            name, email, password
+        });
+        res.send({
+            message: store
+        });
+    } catch (message) {
+        return next(ExceptionChecker.ExceptionChecker(message));
+    }
+}
+ 
 module.exports = {
-    testHttpExeptionFunction, testHttpExeptionClass
+    testHttpExeptionFunction, testHttpExeptionClass, testMiddlware
 }

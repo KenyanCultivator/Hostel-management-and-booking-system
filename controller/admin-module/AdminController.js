@@ -1,4 +1,4 @@
-const { AdminModel } = require('../model');
+const { AdminModel } = require('../../model');
 const index = async (req, res) => {
     try {
         const users = await AdminModel.findAll();
