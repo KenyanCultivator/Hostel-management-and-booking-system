@@ -1,10 +1,11 @@
 const express = require('express');
-const { TestController, UserController, AdminController, AgentController, TenantController, LandlordController, HouseController, RoleController, RegisterController } = require('../controller');
+const { TestController, UserController, AdminController, AgentController, TenantController, LandlordController, HouseController, RoleController, RegisterController, LoginController } = require('../controller');
 const { verificationAuthMiddleware } = require('../Middleware');
 
 const router = express.Router({ caseSensitive: true });
 
-router.post('/register', [RegisterController.store]);
+router.post('/register', [verificationAuthMiddleware.verifyUserData, verificationAuthMiddleware.checkDuplicateUserData, RegisterController.store]);
+router.post('/login', [verificationAuthMiddleware.verifyUserData, verificationAuthMiddleware.checkDataExists, verificationAuthMiddleware.assignToken, LoginController.login]);
 
 // user router
 router.get('/user', [UserController.index]);

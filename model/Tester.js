@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
         paranoid: true
     });
     
-    Tester.sync();
+    Tester.sync({ force: true});
 
     return Tester;
 }

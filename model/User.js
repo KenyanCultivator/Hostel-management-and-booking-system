@@ -18,6 +18,13 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allownull: false
         },
+        role_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'roles',
+                key: 'id'
+            }
+        },
         rememberToken: {
             type: DataTypes.STRING,
             allownull: false
@@ -30,8 +37,8 @@ module.exports = (sequelize, DataTypes) => {
         paranoid: true
     });
     
-    // User.sync({force: true});
     User.sync();
+    // User.sync();
 
     return User;
 }

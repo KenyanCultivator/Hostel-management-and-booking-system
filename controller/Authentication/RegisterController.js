@@ -1,26 +1,27 @@
 const express = require('express');
 const { Joi } = require('express-validation');
-const { StatusCodesError, ExceptionChecker } = require('../../error');
+const { ExceptionChecker } = require('../../error');
 const { UserModel } = require('../../model');
-const jwt = require('jsonwebtoken')
+const bcrypt = require('bcrypt');
 
 const app = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-const store = async (req, res, next) => {
+const store = (req, res, next) => {
     try {
+        const saltRounds = 10;
         const { email, name, password } = req.body;
-        const user = await UserModel.create({
-            email, name, password
+        bcrypt.hash(password, saltRounds, async function(err, password) {
+            await UserModel.create({
+                email, name, password
+            });
         });
-        
-        res.send(user);
 
-    } catch ({ name }) {
-        return next(ExceptionChecker.ExceptionChecker(name));
+    } catch ({ message }) {
+        return next(ExceptionChecker.ExceptionChecker(message));
     }
-};
+}
 
 module.exports = {
     store

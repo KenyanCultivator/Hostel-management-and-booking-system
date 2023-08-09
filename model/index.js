@@ -62,3 +62,10 @@ UserModel.hasMany(Tester, {
 Tester.belongsTo(UserModel, {
     foreignKey: 'user_id'
 });
+
+RoleModel.hasOne(UserModel, {
+    foreignKey: 'role_id',
+});
+UserModel.belongsTo(RoleModel, {
+    foreignKey: 'role_id'
+});

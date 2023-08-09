@@ -39,7 +39,7 @@ const store = async (req, res) => {
 
 const show = async (req, res) => {
     try {
-        const show = await UserModel.findAll({where: {id: req.params.id}}, );
+        const show = await UserModel.findAll( {where: {id: req.params.id}} );
         res.send({
             message: show
         });

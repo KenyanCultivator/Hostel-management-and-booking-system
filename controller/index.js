@@ -2,7 +2,8 @@ const TestController = require('./TestController');
 const UserController = require('./UserController');
 const AdminController = require('./admin-module/AdminController');
 const AgentController = require('./agent-module/AgentController');
-const RegisterController = require('./Authentication/RegisterController')
+const RegisterController = require('./Authentication/RegisterController');
+const LoginController = require('./Authentication/LoginController');
 // const BookingController = require('./BookingController');
 // const CommentController = require('./CommentController');
 // const CompanyController = require('./CompanyController');
@@ -42,7 +43,7 @@ const TenantController = require('./tenant-module/TenantController');
 
 module.exports = {
     UserController, AgentController, AdminController, TestController, TenantController, HouseController, LandlordController, 
-    RoleController, RegisterController
+    RoleController, RegisterController, LoginController
 }
 
 // module.exports = {

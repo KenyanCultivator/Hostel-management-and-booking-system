@@ -11,7 +11,6 @@ function ExceptionChecker(name) {
 
     }
     if(parseInt(name)) {
-        console.log(name);
         return new HttpException(name);
     }
     
